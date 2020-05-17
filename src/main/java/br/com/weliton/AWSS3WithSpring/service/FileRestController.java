@@ -3,6 +3,7 @@ package br.com.weliton.AWSS3WithSpring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,10 @@ public class FileRestController {
 	@GetMapping("{fileName}")
 	public ResponseEntity<FileSystemResource> downloadImagem(@PathVariable String fileName){
 		return (ResponseEntity<FileSystemResource>) fileService.getFile(fileName); 
+	}
+	@DeleteMapping("{fileName}")
+	public ResponseEntity<Boolean> deletarArquivos(@PathVariable String fileName){
+		return (ResponseEntity<Boolean>) fileService.deleteFile(fileName); 
 	}
 
 }

@@ -35,7 +35,7 @@ public class FileService {
 			return ResponseEntity.status(HttpStatus.OK).body(file.getOriginalFilename());
 		} catch (AmazonServiceException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Problem in Amazon Acess" + " - " + e.getMessage());
+					.body("Problem in Amazon Access" + " - " + e.getMessage());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -57,8 +57,19 @@ public class FileService {
 				return new ResponseEntity<>(bytes, httpHeaders, HttpStatus.OK);
 			}
 		} catch (AmazonServiceException e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Problem in Amazon Acess"+" - "+e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Problem in Amazon Access"+" - "+e.getMessage());
 		} catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+
+	public ResponseEntity<?> deleteFile(String fileName) {
+		try {
+			s3client.deleteObject(bucket, fileName);
+		    return ResponseEntity.status(HttpStatus.OK).body(fileName);
+		 } catch (AmazonServiceException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Problem in Amazon Access"+" - "+e.getMessage());
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
