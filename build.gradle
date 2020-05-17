@@ -17,6 +17,7 @@ dependencies {
 
 	implementation 'com.amazonaws:aws-java-sdk-s3'
 	implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.228')
+	implementation 'commons-fileupload:commons-fileupload:1.4'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
