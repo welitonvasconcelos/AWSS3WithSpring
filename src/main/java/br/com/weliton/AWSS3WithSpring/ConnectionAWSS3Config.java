@@ -2,20 +2,22 @@ package br.com.weliton.AWSS3WithSpring;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
+@Configuration
 public class ConnectionAWSS3Config {
-	@Value("${jsa.s3.aws.accessKey}")
+	@Value("${aws.s3.accessKey}")
 	private String awsId;
 	 
-	@Value("${jsa.s3.aws.secretKey}")
+	@Value("${aws.s3.secretKey}")
 	private String awsKey;
 		
-	@Value("${jsa.s3.aws.region}")
+	@Value("${aws.s3.region}")
 	private String region;
 	
 	
