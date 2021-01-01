@@ -43,7 +43,7 @@ public class FileService {
 
 	public ResponseEntity<?> getFile(String fileName) {
 		try {
-			if (s3client.doesObjectExist(bucket, fileName)) {
+			if (!s3client.doesObjectExist(bucket, fileName)) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The file does not exist");
 			} else {
 				s3client.getObject(bucket, fileName);
